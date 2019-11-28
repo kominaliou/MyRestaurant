@@ -1,0 +1,9 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-searchbar animated #searchBox (input)="searchRestaurant(searchBox.value)" (ionClear)="searchRestaurant('')"> </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-item *ngFor="let restaurant of filtredRestaurants$ | async">
+    <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+</ion-item>

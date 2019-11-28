@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Restaurant
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-segment (ionChange)="evenementChange($event)">
+        <ion-segment-button value="Restaurant-list">
+            <ion-label>Listes</ion-label>
+            <ion-icon name="list-box"></ion-icon>
+        </ion-segment-button>
+
+        <ion-segment-button value="Restaurant-new">
+            <ion-label>Nouveau</ion-label>
+            <ion-icon name="add-circle"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+
+    <app-restaurant-list *ngIf="listView"> </app-restaurant-list>
+    <app-new-restaurant *ngIf="!listView"></app-new-restaurant>
+</ion-content>

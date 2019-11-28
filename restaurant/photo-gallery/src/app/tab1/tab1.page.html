@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Wellcome to MyRestaurant</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-img src="/assets/logo/standByMeal.jpg"></ion-img>
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <p>L'application permet de lister les restaurants favoris de l'utilisateur et leurs attribuer une notation</p>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <app-restaurant-card *ngFor="let restaurant of restaurantService.filteredRestaurants" [restaurant]="restaurant" [isFilterReadOnly]="true">
+    </app-restaurant-card>
+
+</ion-content>

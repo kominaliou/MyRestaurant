@@ -1,0 +1,75 @@
+<ion-toolbar [hidden]="carousselDisplay">
+    <ion-icon *ngIf="!restaurant.logoPhoto.data" class="icon" name="browsers" (click)="viewPhoto()">
+    </ion-icon>
+    <ion-img *ngIf="restaurant.logoPhoto.data" src="{{restaurant.logoPhoto.data}}"></ion-img>
+</ion-toolbar>
+
+<ion-slides *ngIf="carousselDisplay">
+    <ion-slide *ngFor="let photo of photoService.photos">
+        <ion-img src="{{photo.data}}" (click)="selectPhoto(photo)"></ion-img>
+    </ion-slide>
+</ion-slides>
+
+
+<form>
+    <ion-list [hidden]="carousselDisplay" lines="full">
+        <!--Formulaire pour le nom du restaurant-->
+        <ion-item>
+            <ion-label>Nom :</ion-label>
+            <ion-input required name="restaurantName" #restaurantName="ngModel" type="text" [(ngModel)]="restaurant.name">
+            </ion-input>
+            <ion-label>
+                <ion-text color="danger" *ngIf="restaurantName.invalid">*</ion-text>
+            </ion-label>
+        </ion-item>
+
+        <!--Formulaire pour le nombre d'employés-->
+        <ion-item line="full">
+            <ion-label position="stacked">Nombre d'employés
+            </ion-label>
+            <ion-input required type="text" name="numberOfEmployees" #numberOfEmployees="ngModel" [(ngModel)]="restaurant.number"></ion-input>
+            <ion-label>
+                <ion-text color="danger" *ngIf="numberOfEmployees.invalid">*</ion-text>
+            </ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Note</ion-label>
+            <rating [(rate)]="restaurant.currentRate"></rating>
+            {{restaurant.currentRate}}
+        </ion-item>
+
+
+        <!--Formulaire pour information adresse du restaurant-->
+        <ion-toolbar>
+            <ion-label>Addresse:</ion-label>
+        </ion-toolbar>
+
+
+        <ion-item>
+            <ion-label>Numero de la rue:</ion-label>
+            <ion-input placeholder="numero" name="streetNumber" [(ngModel)]="restaurant.adress.streetNumber" #streetNumber="ngModel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Nom de la rue:</ion-label>
+            <ion-input placeholder="nom de la rue" name="streetName" [(ngModel)]="restaurant.adress.streetName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Code postal:</ion-label>
+            <ion-input placeholder="code postal" name="zipCode" [(ngModel)]="restaurant.adress.zipCode"></ion-input>
+
+            <ion-label>Ville:</ion-label>
+            <ion-input placeholder="ville" name="town" [(ngModel)]="restaurant.adress.town"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <div class="ion-padding" *ngIf="!isUdpdate">
+        <ion-button [hidden]="carousselDisplay " expand="block" type="submit" class="ion-no-margin" (click)="CreateRestaurant()">Creer restaurant</ion-button>
+    </div>
+
+    <div class="ion-padding" *ngIf="isUdpdate">
+        <ion-button [hidden]="carousselDisplay " expand="block" type="submit" class="ion-no-margin" (click)="editRestaurant()">Modifier restaurant</ion-button>
+    </div>
+</form>

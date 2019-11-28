@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="danger">
+        <ion-title>StandByMeal</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Wellcome to MyRestaurant</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-img src="/assets/logo/standByMeal.jpg"></ion-img>
+        </ion-card-content>
+
+    </ion-card>
+
+    <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+        <ion-item>
+            <ion-label>Votre Identifiant</ion-label>
+            <ion-input type="text" name="username" ngModel placeholder="username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Mot de passe</ion-label>
+            <ion-input type="password" name="password" ngModel placeholder="password"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block">Login</ion-button>
+    </form>
+</ion-content>
